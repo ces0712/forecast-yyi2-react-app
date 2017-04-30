@@ -1,0 +1,15 @@
+.git/*
+.gitignore
+
+
+# Yii2 backend
+backend/.env
+backend/config/local.php
+backend/config/console-local.php
+backend/runtime
+backend/web/assets
+backend/vendor
+
+# react frontend
+frontend/node_modules/
+frontend/public/

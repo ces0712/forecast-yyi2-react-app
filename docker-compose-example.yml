@@ -1,0 +1,80 @@
+version: '2'
+services:
+
+    frontend:
+        build: ./frontend
+        volumes:
+            - ./frontend:/usr/src/app:rw
+        environment:
+            - NODE_ENV=dev
+        links:
+            - backend
+        ports:
+            - "3000:3000"
+        command: >
+            sh -c '
+                if test -d node_modules; 
+                then 
+                    echo node_modules_exists ; 
+                else 
+                    cp -a /tmp/node_modules /usr/src/app/website; 
+                fi && 
+                npm install && 
+                /usr/local/bin/node ./index.js
+            '
+        
+
+    backend:
+        build: ./backend
+        volumes:
+            - ./backend:/var/www/html/
+        links:
+            - database
+        environment:
+            ENABLE_ENV_FILE: 1
+            ENABLE_LOCALCONF: 1
+            API_TOKEN: "<YOUR GITHUB API TOKEN>"
+
+
+        # For Apache based image:
+        ports:
+            - "8081:80"
+
+        # For FPM/HHVM based image:
+        #expose:
+        #    - "9000"
+
+        # Autostart at boottime
+        #restart: always
+
+        # Send log output to syslog
+        #logging:
+        #    driver: "syslog"
+        #    options:
+        #        tag: "docker-web"
+
+    # For FPM/HHVM based image:
+    #nginx:
+    #    build: ./nginx
+    #    restart: always
+    #    ports:
+    #        - "8080:80"
+    #    links:
+    #        - web
+    #    volumes_from:
+    #        - web
+
+    database:
+        image: postgres:9.6
+        ports:
+            - "5432:5432"
+        expose:
+            - "5432"
+        environment:
+            POSTGRES_DB: forecast
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+
+        # Autostart at boottime
+        #restart: always
+

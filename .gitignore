@@ -1,0 +1,15 @@
+# Yii2 backend
+backend/config/local.php
+backend/config/console-local.php
+backend/docker-compose.yml
+backend/docker-compose-example.yml
+backend/vendor/
+backend/.env
+
+# React frontend
+frontend/public/build
+frontend/node_modules
+
+docker-compose.yml
+*.swp
+.vimrc
