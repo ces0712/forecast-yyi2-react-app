@@ -1,3 +1,7 @@
+To see the api docs go to this site [![Apiary Demo](http://docs.demo197.apiary.io)]
+
+
+
 Yii 2 Dockerized
 ================
 

@@ -6,6 +6,6 @@ use app\models\Api as CommonApi;
 
 class Api extends CommonApi
 {
-
+    public $api = array();
     
 }

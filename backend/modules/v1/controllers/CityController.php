@@ -5,6 +5,9 @@ namespace app\modules\v1\controllers;
 use yii\rest\Controller;
 use yii\filters\auth\HttpBasicAuth;
 use yii\data\ActiveDataProvider;
+// manage sync and async request
+use GuzzleHttp\Client;
+
 
 use app\modules\v1\models\City;
 use app\modules\v1\models\User;
@@ -29,17 +32,49 @@ class CityController extends Controller
         return User::auth($username, $password);
     }
 
-     public function actionIndex($id){
-        $query = City::find()->where([
-                'id'    =>  $id,
-            ]);
+     public function actionView($id){
 
-        return new ActiveDataProvider([
-            'query' => $query 
-        ]);
-    }
+        $city = City::find()
+            ->where(['id' => $id])
+            ->with('api')
+            ->one();
 
-    
+        $api_key = $city->api->api_key;
+        $q = $city->city_name.','.$city->country_code;
+
+        $url = 'http://api.openweathermap.org/data/2.5/forecast?appid=';
+        $url .=  $api_key.'&q=';
+        $url .=  $q;
+         
+        
+        $client = new Client();
+
+        $response = $client->request('GET', $url);
+
+        $array_temperatures = array();
+        $array_temperatures['status_code'] = $response->getStatusCode();
+
+        
+        if ($response->getStatusCode() === 200) {
+            // Adding the true returns the result as an array and not an stdClass
+            $openWeatherResp = json_decode($response->getBody(),true);
+            $array_temperatures['main'] = array();
+            $array_temperatures['city'] = array();
+
+            $array_temperatures['city'] = $openWeatherResp['city'];
+
+            // the key of interest is list
+            foreach ($openWeatherResp['list'] as $array_list) {
+                // the key of interest is main
+                 $array_temperatures['main'][] = $array_list['main'];
+            }
+
+            $array_temperatures['message'] = 'request process';
+            
+        } else $array_temperatures['message'] = 'Error: Bad Request !!';
+        
+        return $array_temperatures;
+    }  
 
 }
 

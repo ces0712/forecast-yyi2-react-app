@@ -1,0 +1,428 @@
+FORMAT: 1A
+HOST: http://localhost:8081
+
+# demo
+
+Some documentation of how the api of the forecast-yii2-react-app works 
+
+## Cities Collection [/cities]
+
+### List City By Id [GET]
+
++ Response 200 (application/json)
+
+    {
+    "status_code": 200,
+    "main": [
+        {
+            "temp": 285.93,
+            "temp_min": 285.46,
+            "temp_max": 285.93,
+            "pressure": 1024.87,
+            "sea_level": 1030.71,
+            "grnd_level": 1024.87,
+            "humidity": 66,
+            "temp_kf": 0.47
+        },
+        {
+            "temp": 284.53,
+            "temp_min": 284.175,
+            "temp_max": 284.53,
+            "pressure": 1025.92,
+            "sea_level": 1031.77,
+            "grnd_level": 1025.92,
+            "humidity": 65,
+            "temp_kf": 0.35
+        },
+        {
+            "temp": 283.39,
+            "temp_min": 283.158,
+            "temp_max": 283.39,
+            "pressure": 1025.99,
+            "sea_level": 1031.85,
+            "grnd_level": 1025.99,
+            "humidity": 67,
+            "temp_kf": 0.23
+        },
+        {
+            "temp": 282.43,
+            "temp_min": 282.31,
+            "temp_max": 282.43,
+            "pressure": 1025.9,
+            "sea_level": 1031.78,
+            "grnd_level": 1025.9,
+            "humidity": 69,
+            "temp_kf": 0.12
+        },
+        {
+            "temp": 281.217,
+            "temp_min": 281.217,
+            "temp_max": 281.217,
+            "pressure": 1025.97,
+            "sea_level": 1031.91,
+            "grnd_level": 1025.97,
+            "humidity": 89,
+            "temp_kf": 0
+        },
+        {
+            "temp": 282.779,
+            "temp_min": 282.779,
+            "temp_max": 282.779,
+            "pressure": 1026.09,
+            "sea_level": 1031.89,
+            "grnd_level": 1026.09,
+            "humidity": 95,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.78,
+            "temp_min": 283.78,
+            "temp_max": 283.78,
+            "pressure": 1026.03,
+            "sea_level": 1031.73,
+            "grnd_level": 1026.03,
+            "humidity": 94,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.135,
+            "temp_min": 283.135,
+            "temp_max": 283.135,
+            "pressure": 1025.77,
+            "sea_level": 1031.58,
+            "grnd_level": 1025.77,
+            "humidity": 97,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.177,
+            "temp_min": 283.177,
+            "temp_max": 283.177,
+            "pressure": 1025.95,
+            "sea_level": 1031.82,
+            "grnd_level": 1025.95,
+            "humidity": 97,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.499,
+            "temp_min": 283.499,
+            "temp_max": 283.499,
+            "pressure": 1027.11,
+            "sea_level": 1033.03,
+            "grnd_level": 1027.11,
+            "humidity": 96,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.273,
+            "temp_min": 283.273,
+            "temp_max": 283.273,
+            "pressure": 1028.31,
+            "sea_level": 1034.25,
+            "grnd_level": 1028.31,
+            "humidity": 96,
+            "temp_kf": 0
+        },
+        {
+            "temp": 282.515,
+            "temp_min": 282.515,
+            "temp_max": 282.515,
+            "pressure": 1029.24,
+            "sea_level": 1035.11,
+            "grnd_level": 1029.24,
+            "humidity": 96,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.087,
+            "temp_min": 283.087,
+            "temp_max": 283.087,
+            "pressure": 1030.13,
+            "sea_level": 1036.01,
+            "grnd_level": 1030.13,
+            "humidity": 99,
+            "temp_kf": 0
+        },
+        {
+            "temp": 285.158,
+            "temp_min": 285.158,
+            "temp_max": 285.158,
+            "pressure": 1030.79,
+            "sea_level": 1036.71,
+            "grnd_level": 1030.79,
+            "humidity": 100,
+            "temp_kf": 0
+        },
+        {
+            "temp": 286.886,
+            "temp_min": 286.886,
+            "temp_max": 286.886,
+            "pressure": 1030.45,
+            "sea_level": 1036.41,
+            "grnd_level": 1030.45,
+            "humidity": 91,
+            "temp_kf": 0
+        },
+        {
+            "temp": 286.434,
+            "temp_min": 286.434,
+            "temp_max": 286.434,
+            "pressure": 1030.17,
+            "sea_level": 1036.03,
+            "grnd_level": 1030.17,
+            "humidity": 79,
+            "temp_kf": 0
+        },
+        {
+            "temp": 286.015,
+            "temp_min": 286.015,
+            "temp_max": 286.015,
+            "pressure": 1030,
+            "sea_level": 1035.87,
+            "grnd_level": 1030,
+            "humidity": 75,
+            "temp_kf": 0
+        },
+        {
+            "temp": 284.493,
+            "temp_min": 284.493,
+            "temp_max": 284.493,
+            "pressure": 1030.69,
+            "sea_level": 1036.54,
+            "grnd_level": 1030.69,
+            "humidity": 82,
+            "temp_kf": 0
+        },
+        {
+            "temp": 282.526,
+            "temp_min": 282.526,
+            "temp_max": 282.526,
+            "pressure": 1030.36,
+            "sea_level": 1036.24,
+            "grnd_level": 1030.36,
+            "humidity": 85,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.926,
+            "temp_min": 280.926,
+            "temp_max": 280.926,
+            "pressure": 1029.14,
+            "sea_level": 1035.08,
+            "grnd_level": 1029.14,
+            "humidity": 96,
+            "temp_kf": 0
+        },
+        {
+            "temp": 281.517,
+            "temp_min": 281.517,
+            "temp_max": 281.517,
+            "pressure": 1028.13,
+            "sea_level": 1034.01,
+            "grnd_level": 1028.13,
+            "humidity": 98,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.014,
+            "temp_min": 283.014,
+            "temp_max": 283.014,
+            "pressure": 1028.45,
+            "sea_level": 1034.33,
+            "grnd_level": 1028.45,
+            "humidity": 99,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.95,
+            "temp_min": 283.95,
+            "temp_max": 283.95,
+            "pressure": 1028.54,
+            "sea_level": 1034.47,
+            "grnd_level": 1028.54,
+            "humidity": 98,
+            "temp_kf": 0
+        },
+        {
+            "temp": 284.127,
+            "temp_min": 284.127,
+            "temp_max": 284.127,
+            "pressure": 1028.84,
+            "sea_level": 1034.7,
+            "grnd_level": 1028.84,
+            "humidity": 98,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.691,
+            "temp_min": 283.691,
+            "temp_max": 283.691,
+            "pressure": 1029.32,
+            "sea_level": 1035.24,
+            "grnd_level": 1029.32,
+            "humidity": 95,
+            "temp_kf": 0
+        },
+        {
+            "temp": 281.739,
+            "temp_min": 281.739,
+            "temp_max": 281.739,
+            "pressure": 1030.49,
+            "sea_level": 1036.46,
+            "grnd_level": 1030.49,
+            "humidity": 95,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.755,
+            "temp_min": 280.755,
+            "temp_max": 280.755,
+            "pressure": 1030.62,
+            "sea_level": 1036.69,
+            "grnd_level": 1030.62,
+            "humidity": 94,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.085,
+            "temp_min": 280.085,
+            "temp_max": 280.085,
+            "pressure": 1030.44,
+            "sea_level": 1036.42,
+            "grnd_level": 1030.44,
+            "humidity": 92,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.459,
+            "temp_min": 280.459,
+            "temp_max": 280.459,
+            "pressure": 1030.9,
+            "sea_level": 1036.8,
+            "grnd_level": 1030.9,
+            "humidity": 95,
+            "temp_kf": 0
+        },
+        {
+            "temp": 282.695,
+            "temp_min": 282.695,
+            "temp_max": 282.695,
+            "pressure": 1031.24,
+            "sea_level": 1037.16,
+            "grnd_level": 1031.24,
+            "humidity": 94,
+            "temp_kf": 0
+        },
+        {
+            "temp": 284.793,
+            "temp_min": 284.793,
+            "temp_max": 284.793,
+            "pressure": 1031.12,
+            "sea_level": 1037.12,
+            "grnd_level": 1031.12,
+            "humidity": 80,
+            "temp_kf": 0
+        },
+        {
+            "temp": 285.241,
+            "temp_min": 285.241,
+            "temp_max": 285.241,
+            "pressure": 1031.05,
+            "sea_level": 1037.02,
+            "grnd_level": 1031.05,
+            "humidity": 72,
+            "temp_kf": 0
+        },
+        {
+            "temp": 283.1,
+            "temp_min": 283.1,
+            "temp_max": 283.1,
+            "pressure": 1031.27,
+            "sea_level": 1037.16,
+            "grnd_level": 1031.27,
+            "humidity": 69,
+            "temp_kf": 0
+        },
+        {
+            "temp": 281.407,
+            "temp_min": 281.407,
+            "temp_max": 281.407,
+            "pressure": 1031.72,
+            "sea_level": 1037.71,
+            "grnd_level": 1031.72,
+            "humidity": 68,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.864,
+            "temp_min": 280.864,
+            "temp_max": 280.864,
+            "pressure": 1031.11,
+            "sea_level": 1037.11,
+            "grnd_level": 1031.11,
+            "humidity": 69,
+            "temp_kf": 0
+        },
+        {
+            "temp": 279.497,
+            "temp_min": 279.497,
+            "temp_max": 279.497,
+            "pressure": 1030.59,
+            "sea_level": 1036.59,
+            "grnd_level": 1030.59,
+            "humidity": 72,
+            "temp_kf": 0
+        },
+        {
+            "temp": 280.822,
+            "temp_min": 280.822,
+            "temp_max": 280.822,
+            "pressure": 1030.2,
+            "sea_level": 1036.13,
+            "grnd_level": 1030.2,
+            "humidity": 75,
+            "temp_kf": 0
+        },
+        {
+            "temp": 285.895,
+            "temp_min": 285.895,
+            "temp_max": 285.895,
+            "pressure": 1029.51,
+            "sea_level": 1035.31,
+            "grnd_level": 1029.51,
+            "humidity": 81,
+            "temp_kf": 0
+        },
+        {
+            "temp": 289.122,
+            "temp_min": 289.122,
+            "temp_max": 289.122,
+            "pressure": 1028.29,
+            "sea_level": 1034.02,
+            "grnd_level": 1028.29,
+            "humidity": 79,
+            "temp_kf": 0
+        },
+        {
+            "temp": 289.488,
+            "temp_min": 289.488,
+            "temp_max": 289.488,
+            "pressure": 1026.8,
+            "sea_level": 1032.63,
+            "grnd_level": 1026.8,
+            "humidity": 68,
+            "temp_kf": 0
+        }
+    ],
+    "city": {
+        "id": 2950159,
+        "name": "Berlin",
+        "coord": {
+            "lat": 52.5244,
+            "lon": 13.4105
+        },
+        "country": "DE"
+    },
+    "message": "request process"
+    }
