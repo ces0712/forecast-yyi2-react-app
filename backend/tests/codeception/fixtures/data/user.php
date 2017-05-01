@@ -3,7 +3,7 @@
 return [
     'default' => [
         'username' => 'jabari50',
-        'is_email_verified' => 1,
+        'is_email_verified' => true,
         'auth_key' => 'UZ3Wk-NG5UmNRgs4rtvJr69vaJq7Bow7',
         'password_hash' => '$2y$13$KHwvzMZeL6RHGZzYenCdJ.yGaWd.1JGh5icljZhr7WCCB5KLKfyPC',
         'email' => 'feil.estella@champlin.com',
@@ -14,7 +14,7 @@ return [
     ],
     [
         'username' => 'weissnat.harry',
-        'is_email_verified' => 1,
+        'is_email_verified' => true,
         'auth_key' => 'Lurw3nt3Rp9Rifs1gYSbct7lkrCAKcv_',
         'password_hash' => '$2y$13$WIVzyeM46MqBN.gdk4F51uOhTrLCWwdetnZy.gwKsg1X.UA6pSory',
         'email' => 'antonetta.batz@gmail.com',
@@ -25,7 +25,7 @@ return [
     ],
     'email_token_expired' => [
         'username' => 'zcarroll',
-        'is_email_verified' => 0,
+        'is_email_verified' => false,
         'auth_key' => '45S-w7rMvm89b4imTmwQhWtUoW3Q7r86',
         'password_hash' => '$2y$13$3HeyUHtit1DlfbJIW64S3OcapNu0HdovKoG50MT5aivxsvwZ1BfFq',
         'email_confirmation_token' => 'Bth9PSl49eSmDcdIK5dbEimA-l5sHm0a_0427810959',
@@ -37,7 +37,7 @@ return [
     ],
     'password_token_expired' => [
         'username' => 'parisian.amya',
-        'is_email_verified' => 1,
+        'is_email_verified' => false,
         'auth_key' => 'nhxxT8K9AqFfdHvH4bjZfHuKAou2QKnq',
         'password_hash' => '$2y$13$7p3C7qsm3HzUcuFzJsmaUuhopQ4qWaHjde3KlVDessFV0ucdjNCM2',
         'password_reset_token' => 'Ewc02Nw2wP3HnFUDdVXeswd7-laTVoB5_0427810960',
@@ -49,7 +49,7 @@ return [
     ],
     'deleted' => [
         'username' => 'kshlerin.cynthia',
-        'is_email_verified' => 1,
+        'is_email_verified' => true,
         'auth_key' => 'ZYjqTRxYgI3k5zLTRuGChHUkvuHjt2Km',
         'password_hash' => '$2y$13$ODvEI7sy39VdPN4W2S2ZkOzPmUi8maX0eebLZc3AqOCvpvnO8s58K',
         'email' => 'kulas.mazie@gleason.com',

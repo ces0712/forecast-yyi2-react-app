@@ -12,7 +12,7 @@ class DockerEnv
     const APP_DIR = '/var/www/html/';
     const VENDOR_DIR = '/var/www/vendor/';
 
-    const TEST_DB_DSN = 'mysql:host=testdb;dbname=test';
+    const TEST_DB_DSN = 'pgsql:host=testdb;dbname=test;';
     const TEST_DB_USER = 'test';
     const TEST_DB_PASSWORD = 'test';
 
@@ -119,7 +119,7 @@ class DockerEnv
      * @param string $dsn the dsn to return if no env var is set and not in testing mode. Default is 'mysql:host=db;dbname=web'.
      * @return string the DB  dsn for the current environment
      */
-    public static function dbDsn($dsn = 'mysql:host=db;dbname=web')
+    public static function dbDsn($dsn = 'psql:host=db;dbname=forecast')
     {
         return self::get('DB_DSN', YII_ENV_TEST ? self::TEST_DB_DSN : $dsn);
     }
@@ -134,7 +134,7 @@ class DockerEnv
      * @param string $user the user to return if no env var is set and not in testing mode. Default is 'web'.
      * @return string the db username for the current environment
      */
-    public static function dbUser($user = 'web')
+    public static function dbUser($user = 'postgres')
     {
         return self::get('DB_USER', YII_ENV_TEST ? self::TEST_DB_USER : $user);
     }
@@ -149,7 +149,7 @@ class DockerEnv
      * @param string $password the password to return if no env var is set and not in testing mode. Default is 'web'.
      * @return string the db password for the current environment
      */
-    public static function dbPassword($password = 'web')
+    public static function dbPassword($password = 'postgres')
     {
         return self::get('DB_PASSWORD', YII_ENV_TEST ? self::TEST_DB_PASSWORD : $password);
     }

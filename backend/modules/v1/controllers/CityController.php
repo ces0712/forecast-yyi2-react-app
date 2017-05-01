@@ -27,12 +27,23 @@ class CityController extends Controller
         return $behaviors;
     }
 
+    /**
+     * [auth description]
+     * @param  string $username 
+     * @param  string $password 
+     * @return array,null  if authentication is pass return the user object else return invalid credentials
+     */
     public function auth($username, $password)
     {
         return User::auth($username, $password);
     }
 
-     public function actionView($id){
+    /**
+     * Endpoint cities/$id get five days of weather of the city  
+     * @param  integer $id primary key of the table city
+     * @return json object 
+     */
+    public function actionView($id){
 
         $city = City::find()
             ->where(['id' => $id])
