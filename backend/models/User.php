@@ -32,6 +32,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     const ROLE_USER = 10;
 
+
     /**
      * @var string|null the current password value from form input
      */
@@ -252,5 +253,6 @@ class User extends ActiveRecord implements IdentityInterface
         $this->is_email_verified = 1;
         return $this->save();
     }
+
 
 }

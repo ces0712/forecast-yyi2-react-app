@@ -4,6 +4,11 @@ $config = [
     'basePath' => '/var/www/html',
     'bootstrap' => ['log'],
     'vendorPath' => '/var/www/vendor',
+    'modules' => [
+        'v1' => [
+            'class' => 'app\modules\v1\Module',
+        ],
+     ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\ApcCache',
@@ -59,11 +64,11 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'user'
+                    'controller' => 'v1/user'
                 ],
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'api',
+                    'controller' => 'v1/api',
                     // 'tokens' => [
                     //     '{api_key}'             => '<api_key:\d+>',
                     // ],
@@ -71,7 +76,7 @@ $config = [
                 ],
                 [
                     'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'city'
+                    'controller' => 'v1/city'
                 ],
             ],
         ],
@@ -82,6 +87,7 @@ $config = [
             // 'loginUrl' => null,
         ],
     ],
+
     'params' => require('/var/www/html/config/params.php'),
 ];
 
