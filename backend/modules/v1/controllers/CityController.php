@@ -2,9 +2,10 @@
 
 namespace app\modules\v1\controllers;
 
-use yii\rest\Controller;
+use yii\rest\ActiveController;
 use yii\filters\auth\HttpBasicAuth;
 use yii\data\ActiveDataProvider;
+use yii\web\Response;
 // manage sync and async request
 use GuzzleHttp\Client;
 
@@ -12,18 +13,59 @@ use GuzzleHttp\Client;
 use app\modules\v1\models\City;
 use app\modules\v1\models\User;
 
-class CityController extends Controller
+
+class CityController extends ActiveController
 {
     public $modelClass = 'app\modules\v1\models\City';
+
+    public function actions()
+    {
+
+        return [];
+    }
+    // allow override default crud
+    public function actionOptions($id = null) {
+        return "ok";
+    }
 
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator']['formats']['application/json'] = Response::FORMAT_JSON;
+        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
         $behaviors['rateLimiter']['enableRateLimitHeaders'] = false;
         $behaviors['authenticator'] = [
             'class' => HttpBasicAuth::className(),
             'auth' => [$this, 'auth']
         ];
+
+        $behaviors['verbs'] = [
+                'class' => \yii\filters\VerbFilter::className(),
+                'actions' => [
+                    'view'   => ['get'],
+                ],
+            ];
+
+            // remove authentication filter
+            $auth = $behaviors['authenticator'];
+            unset($behaviors['authenticator']);
+
+            // add CORS filter
+            $behaviors['corsFilter'] = [
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    'Origin' => ['*'],
+                    'Access-Control-Request-Method' => ['GET', 'OPTIONS'],
+                    'Access-Control-Request-Headers' => ['*'],
+                ],
+            ];
+
+            // re-add authentication filter
+            $behaviors['authenticator'] = $auth;
+            // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
+            $behaviors['authenticator']['except'] = ['options'];
+
+
         return $behaviors;
     }
 
@@ -63,6 +105,7 @@ class CityController extends Controller
         $response = $client->request('GET', $url);
 
         $array_temperatures = array();
+        $array_temperatures['id'] = $id;
         $array_temperatures['status_code'] = $response->getStatusCode();
 
         
