@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import promise from 'redux-promise';
 import ForecastIndex from './components/forecast_index';
-import App from './components/app';
 import reducers from './reducers';
 
 
@@ -17,7 +16,7 @@ ReactDOM.render(
         <div>
             <Switch>
                  <Route path="/:id" component={ForecastIndex} />
-                 <Route path="/" component={App} />
+                 <Redirect from="/" to="/1" />
             </Switch>
         </div>
     </BrowserRouter>

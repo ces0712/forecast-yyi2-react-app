@@ -1,29 +1,32 @@
+require('../../style/style.css');
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { fetchCity } from '../actions';
+import { fetchCity, fetchCities } from '../actions';
 import ForecastChart from './forecast_chart';
-import GoogleMap from './google_map.js';
+import GoogleMap from './google_map';
 
 class ForecastIndex extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchCity(id);
+    this.props.fetchCities();
   }
+
  
-  onRandomClick() {
-    // es preferible tomarlo del params en lugar del post
+  onRandomClick() {    
     const { id } = this.props.match.params;
-    const newId = _.random(1,5);
-    console.log(newId);
-    if (id!==newId) {
-      this.props.fetchCity(newId).then(()=>{
-        this.props.history.push(`/${newId}`);
-      });
-    }else
-      this.onRandomClick.bind(this);
+    const {cities} = this.props;
+    const array = _.map(cities, (value)=>{
+      return value;
+    });
+    // generate random from array values
+    const newId = array[Math.floor(Math.random()*array.length)];
+    this.props.fetchCity(newId).then(()=>{
+      this.props.history.push(`/${newId}`);
+    });
   }
 
   forecastCharts() {
@@ -37,9 +40,18 @@ class ForecastIndex extends Component {
     );
   }
 
+  forecastMap() {
+    const { lat, lon } = this.props.city.city.coord;
+    return (
+      <div className="map_div">
+          <GoogleMap resize="true" lon={ lon } lat={lat} />
+      </div>
+    );
+  }
+
   render() {
-    const { city } = this.props;
-    if (!city) {
+    const { city, cities } = this.props;
+    if (!city || !cities) {
       return <div>Loading...</div>;
     }
     const { lat, lon } = city.city.coord;
@@ -51,10 +63,8 @@ class ForecastIndex extends Component {
           className="btn btn-primary pull-xs-right" 
           onClick={this.onRandomClick.bind(this)}>
           Surprise Me!!
-          </button>
-        <div style={{height: '100%'}}>
-          <GoogleMap lon={ lon } lat={lat} />
-        </div>
+        </button>
+        {this.forecastMap()}
         <div>{ name }</div>
         <div>{ country }</div>
         <div>{ lat }</div>
@@ -65,8 +75,11 @@ class ForecastIndex extends Component {
   }
 }
 
-function mapStateToProps({ city }, ownProps) {
-  return { city: city[ownProps.match.params.id] };
+function mapStateToProps({ city, cities }, ownProps) {
+  return { 
+    city: city[ownProps.match.params.id],
+    cities: _.omit(_.map(cities, 'id'),[ownProps.match.params.id-1]:ownProps.match.params.id),
+  };
 }
 
-export default connect(mapStateToProps, { fetchCity })(ForecastIndex);
+export default connect(mapStateToProps, { fetchCity, fetchCities })(ForecastIndex);

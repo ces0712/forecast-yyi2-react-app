@@ -17,13 +17,14 @@ use app\modules\v1\models\User;
 class CityController extends ActiveController
 {
     public $modelClass = 'app\modules\v1\models\City';
-
+    // override only actionView
     public function actions()
     {
-
-        return [];
+        $actions = parent::actions();
+        unset($actions['view']);
+        return $actions;
     }
-    // allow override default crud
+    // allow override default crud for the actions outside $actions
     public function actionOptions($id = null) {
         return "ok";
     }
@@ -42,6 +43,7 @@ class CityController extends ActiveController
         $behaviors['verbs'] = [
                 'class' => \yii\filters\VerbFilter::className(),
                 'actions' => [
+                    'index' => ['get'],
                     'view'   => ['get'],
                 ],
             ];
@@ -128,7 +130,7 @@ class CityController extends ActiveController
         } else $array_temperatures['message'] = 'Error: Bad Request !!';
         
         return $array_temperatures;
-    }  
+    }
 
 }
 
