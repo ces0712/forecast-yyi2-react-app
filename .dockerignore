@@ -13,3 +13,7 @@ backend/vendor
 # react frontend
 frontend/node_modules/
 frontend/public/
+frontend-test
+
+frontend/build/public
+

@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 
 class GoogleMap extends Component {
   mapHelper(props) {
-      this.map = new google.maps.Map(
-        this.refs.map, {
-          zoom: 12,
-          center: {
-            lat: props.lat,
-            lng: props.lon
-          }
-        }
-      );
+    const coord = {
+      lat: props.lat,
+      lng: props.lon
+    };
+
+    this.map = new google.maps.Map(
+      this.refs.map, {
+        zoom: 14,
+        center: coord
+      }
+    );
+
+    const marker = new google.maps.Marker({
+      position: coord,
+      title: 'Have a nice day!!'      
+    });
+
+    marker.setMap(this.map);
+
   }
   // this lifecicle is call when receive new props
   componentWillReceiveProps(nextProps) {

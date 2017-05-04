@@ -11,6 +11,17 @@ frontend/public/build
 frontend/node_modules
 frontend/website
 
+.DS_Store
+*.log
+
+frontend/coverage
+frontend/build/server.js
+frontend/build/server.js.map
+frontend/build/public/assets
+frontend/webpack-assets.json
+frontend/webpack-stats.json
+
+
 docker-compose.yml
 *.swp
 .vimrc

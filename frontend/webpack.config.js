@@ -8,6 +8,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
     jsEntryPath,
     htmlEntryPath
@@ -20,7 +21,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /(node_modules|bower_components)/,
-      loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015,presets[]=stage-1']
+      loaders: ['react-hot-loader/webpack', 'babel?presets[]=react,presets[]=es2015,presets[]=stage-1']
     }, 
     {
       test: /\.html$/,

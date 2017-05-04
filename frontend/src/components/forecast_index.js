@@ -3,6 +3,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 
 import { fetchCity, fetchCities } from '../actions';
 import ForecastChart from './forecast_chart';
@@ -15,8 +16,7 @@ class ForecastIndex extends Component {
     this.props.fetchCities();
   }
 
- 
-  onRandomClick() {    
+  onSubmit(values) {
     const { id } = this.props.match.params;
     const {cities} = this.props;
     const array = _.map(cities, (value)=>{
@@ -24,53 +24,60 @@ class ForecastIndex extends Component {
     });
     // generate random from array values
     const newId = array[Math.floor(Math.random()*array.length)];
-    this.props.fetchCity(newId).then(()=>{
+    return this.props.fetchCity(newId).then(()=>{
       this.props.history.push(`/${newId}`);
     });
   }
 
-  forecastCharts() {
-    const { main } = this.props.city;
+
+  chartHelper(field) {
+    const { main } = field;
     return (
-      <div>
-        <ForecastChart data={_.map(main, 'temp')} color="yellow" units="K" />
-        <ForecastChart data={_.map(main, 'pressure')} color="blue" units="hPa" />
-        <ForecastChart data={_.map(main, 'humidity')} color="green" units="%" />
+      <div className="table-responsive">
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Temperature (K)</th>
+              <th>Pressure (hPa)</th>
+              <th>Humidity (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><ForecastChart data={_.map(main, 'temp')} color="yellow" units="K" /></td>
+              <td><ForecastChart data={_.map(main, 'pressure')} color="blue" units="hPa" /></td>
+              <td><ForecastChart data={_.map(main, 'humidity')} color="green" units="%" /></td> 
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
 
-  forecastMap() {
-    const { lat, lon } = this.props.city.city.coord;
-    return (
-      <div className="map_div">
-          <GoogleMap resize="true" lon={ lon } lat={lat} />
-      </div>
-    );
-  }
 
   render() {
     const { city, cities } = this.props;
     if (!city || !cities) {
       return <div>Loading...</div>;
     }
-    const { lat, lon } = city.city.coord;
-    const { name, country } = city.city;
+    const { handleSubmit, submitting} = this.props;
+    const { lat, lon } = city.city.coord;    
+    const { main } = this.props.city;
+
+    // const { name, country } = city.city;
     
     return (
-      <div >
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
         <button 
-          className="btn btn-primary pull-xs-right" 
-          onClick={this.onRandomClick.bind(this)}>
+          type="submit"
+          className="btn btn-primary pull-xs-right"
+          disabled={submitting}
+          >
           Surprise Me!!
-        </button>
-        {this.forecastMap()}
-        <div>{ name }</div>
-        <div>{ country }</div>
-        <div>{ lat }</div>
-        <div> { lon }</div>
-         {this.forecastCharts()}
-      </div>
+        </button>        
+        <Field name="map" lat={lat} lon={lon} component={GoogleMap} />                
+        <Field name="chart" main={main} component={this.chartHelper} />
+      </form>
     );
   }
 }
@@ -82,4 +89,10 @@ function mapStateToProps({ city, cities }, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { fetchCity, fetchCities })(ForecastIndex);
+
+export default reduxForm({
+  form: 'forecastForm' 
+})(
+  connect(mapStateToProps, { fetchCity, fetchCities })(ForecastIndex)
+);
+

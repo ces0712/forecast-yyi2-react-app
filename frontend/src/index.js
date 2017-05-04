@@ -2,23 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 import promise from 'redux-promise';
-import ForecastIndex from './components/forecast_index';
 import reducers from './reducers';
+
+import Root from './root';
 
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <BrowserRouter>
-        <div>
-            <Switch>
-                 <Route path="/:id" component={ForecastIndex} />
-                 <Redirect from="/" to="/1" />
-            </Switch>
-        </div>
-    </BrowserRouter>
-  </Provider>
+  <AppContainer>
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <Root />
+    </Provider>  
+  </AppContainer>
   , document.querySelector('.container'));
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./root', () => {
+    const NextApp = require('./root').default;
+    ReactDOM.render(
+      <AppContainer>
+        <NextApp/>
+      </AppContainer>,
+      document.querySelector('container')
+    );
+  });
+}
