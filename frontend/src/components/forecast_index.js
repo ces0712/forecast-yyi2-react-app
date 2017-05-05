@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
-import { fetchCity, fetchCities } from '../actions';
+import { fetchCity, fetchCities, updateCity } from '../actions';
 import ForecastChart from './forecast_chart';
 import GoogleMap from './google_map';
 
@@ -18,15 +18,28 @@ class ForecastIndex extends Component {
 
   onSubmit(values) {
     const { id } = this.props.match.params;
-    const {cities} = this.props;
-    const array = _.map(cities, (value)=>{
-      return value;
-    });
-    // generate random from array values
-    const newId = array[Math.floor(Math.random()*array.length)];
-    return this.props.fetchCity(newId).then(()=>{
-      this.props.history.push(`/${newId}`);
-    });
+    const updateValue = { status: 0 };
+    if (this.props.cities.length === 0) {
+      return this.props.fetchCities().then(()=>{
+        this.props.history.push('/error');
+      });
+    }
+
+    return this.props.updateCity(id, updateValue).then(()=>{
+      this.props.fetchCities().then(()=>{
+        if (this.props.cities.length === 0) {
+          return this.props.fetchCities().then(()=>{
+            this.props.history.push('/error');
+          });
+        } 
+        const {cities} = this.props;
+        const newId = cities[Math.floor(Math.random()*cities.length)];
+        
+        this.props.fetchCity(newId).then(()=>{
+          this.props.history.push(`/forecast/${newId}`);
+        });
+      })
+    });  
   }
 
 
@@ -85,7 +98,7 @@ class ForecastIndex extends Component {
 function mapStateToProps({ city, cities }, ownProps) {
   return { 
     city: city[ownProps.match.params.id],
-    cities: _.omit(_.map(cities, 'id'),[ownProps.match.params.id-1]:ownProps.match.params.id),
+    cities: _.map(cities, 'id')
   };
 }
 
@@ -93,6 +106,6 @@ function mapStateToProps({ city, cities }, ownProps) {
 export default reduxForm({
   form: 'forecastForm' 
 })(
-  connect(mapStateToProps, { fetchCity, fetchCities })(ForecastIndex)
+  connect(mapStateToProps, { fetchCity, fetchCities, updateCity })(ForecastIndex)
 );
 

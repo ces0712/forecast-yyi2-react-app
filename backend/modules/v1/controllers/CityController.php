@@ -22,6 +22,7 @@ class CityController extends ActiveController
     {
         $actions = parent::actions();
         unset($actions['view']);
+        unset($actions['index']);
         return $actions;
     }
     // allow override default crud for the actions outside $actions
@@ -45,6 +46,7 @@ class CityController extends ActiveController
                 'actions' => [
                     'index' => ['get'],
                     'view'   => ['get'],
+                    'update' => ['put']
                 ],
             ];
 
@@ -57,7 +59,7 @@ class CityController extends ActiveController
                 'class' => \yii\filters\Cors::className(),
                 'cors' => [
                     'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET', 'OPTIONS'],
+                    'Access-Control-Request-Method' => ['GET', 'PUT', 'OPTIONS'],
                     'Access-Control-Request-Headers' => ['*'],
                 ],
             ];
@@ -80,6 +82,18 @@ class CityController extends ActiveController
     public function auth($username, $password)
     {
         return User::auth($username, $password);
+    }
+    /**
+     * Endpoint /v1/cities search all database cities with status 1
+     * @return json object
+     */
+    public function actionIndex()
+    {
+        $status = true;
+        $cities = City::find()
+            ->where(['status' => $status])
+            ->all();
+        return $cities;
     }
 
     /**

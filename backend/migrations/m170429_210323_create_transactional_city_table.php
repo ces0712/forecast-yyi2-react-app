@@ -20,6 +20,7 @@ class m170429_210323_create_transactional_city_table extends Migration
             'city_name' => $this->string(50)->notNull(),
             'country_code' => $this->string(5),
             'api_id' => $this->integer()->notNull(),
+            'status' => $this->boolean()->defaultValue(true),
         ]);
 
         // creates index for column `api_id`
@@ -69,6 +70,80 @@ class m170429_210323_create_transactional_city_table extends Migration
             'api_id'=>1,
         ]);
 
+      $this->insert('city', [ 
+        'city_name' => 'Barcelona',
+        'country_code' => 'VE',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barcelonnette',
+        'country_code' => 'FR',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bardera',
+        'country_code' => 'SO',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bardstown',
+        'country_code' => 'US',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bardufoss',
+        'country_code' => 'NO',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bareli',
+        'country_code' =>  'IN',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bari',
+        'country_code' =>  'IT',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barinas',
+        'country_code' => 'VE',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Bario',
+        'country_code' => 'MY',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barisal',
+        'country_code' => 'BD',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barkly Downs',
+        'country_code' =>  'AU',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barnaul',
+        'country_code' => 'RU',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barnwell',
+        'country_code' =>  'US',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barora',
+        'country_code' =>  'SB',
+        'api_id' => 1 ]);
+
+      $this->insert('city', [ 
+        'city_name' => 'Barquisimeto',
+        'country_code' =>  'VE',
+        'api_id' => 1 ]);
 
     }
 

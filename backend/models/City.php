@@ -11,6 +11,7 @@ use Yii;
  * @property string $city_name
  * @property string $country_code
  * @property integer $api_id
+ * @property boolean $status
  *
  * @property Api $api
  */
@@ -32,6 +33,7 @@ class City extends \yii\db\ActiveRecord
         return [
             [['city_name', 'api_id'], 'required'],
             [['api_id'], 'integer'],
+            [['status'], 'boolean'],
             [['city_name'], 'string', 'max' => 50],
             [['country_code'], 'string', 'max' => 5],
             [['api_id'], 'exist', 'skipOnError' => true, 'targetClass' => Api::className(), 'targetAttribute' => ['api_id' => 'id']],
@@ -48,6 +50,7 @@ class City extends \yii\db\ActiveRecord
             'city_name' => 'City Name',
             'country_code' => 'Country Code',
             'api_id' => 'Api ID',
+            'status' => 'Status',
         ];
     }
 
