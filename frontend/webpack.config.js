@@ -6,13 +6,47 @@ var htmlEntryPath = path.resolve(__dirname, 'index.html');
 var buildPath = path.resolve(__dirname, 'public', 'build');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = {
-  entry: [
+const isDeveloping = process.env.NODE_ENV !== 'production';
+
+var jsLoader;
+var entryConfig;
+var plugins;
+
+if (isDeveloping) {
+  entryConfig = [ 
+    'webpack-hot-middleware/client?reload=true', 
     'react-hot-loader/patch',
-    'webpack-hot-middleware/client?reload=true',
     jsEntryPath,
     htmlEntryPath
-  ],
+  ];
+  
+  plugins = [ 
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("styles.css"),
+    new webpack.NoErrorsPlugin()
+  ];
+
+  jsLoader =  ['react-hot-loader/webpack', 'babel?presets[]=react,presets[]=es2015,presets[]=stage-1'];
+
+}else {
+  entryConfig = [ 
+    jsEntryPath,
+    htmlEntryPath
+  ];
+
+  plugins = [ 
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin("styles.css"),
+    new webpack.NoErrorsPlugin()
+  ];
+
+  jsLoader = ['babel?presets[]=react,presets[]=es2015,presets[]=stage-1'];
+}
+
+
+module.exports = {
+  entry: entryConfig,
   output: {
     path: buildPath,
     filename: 'bundle.js'
@@ -21,7 +55,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /(node_modules|bower_components)/,
-      loaders: ['react-hot-loader/webpack', 'babel?presets[]=react,presets[]=es2015,presets[]=stage-1']
+      loaders: jsLoader
     }, 
     {
       test: /\.html$/,
@@ -32,11 +66,6 @@ module.exports = {
       loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
     }]
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("styles.css"),
-    new webpack.NoErrorsPlugin()
-  ]
+  plugins: plugins
 };
 
