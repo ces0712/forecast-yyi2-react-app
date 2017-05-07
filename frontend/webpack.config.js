@@ -24,6 +24,7 @@ if (isDeveloping) {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin("styles.css"),
+    new webpack.EnvironmentPlugin(['PORT_API','HOST']),
     new webpack.NoErrorsPlugin()
   ];
 
@@ -38,6 +39,7 @@ if (isDeveloping) {
   plugins = [ 
     new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin("styles.css"),
+    new webpack.EnvironmentPlugin(['PORT_API','HOST']),
     new webpack.NoErrorsPlugin()
   ];
 

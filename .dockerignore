@@ -11,9 +11,15 @@ backend/web/assets
 backend/vendor
 
 # react frontend
-frontend/node_modules/
-frontend/public/
+frontend/node_modules/**/*
+frontend/node_modules
+frontend/public/**/*
+frontend/public
 frontend-test
-
+frontend/website/**/*
+frontend/website
 frontend/build/public
+
+/tmp/**/*
+/tmp
 

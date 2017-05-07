@@ -23,5 +23,6 @@ frontend/webpack-stats.json
 
 
 docker-compose.yml
+dockercloud.yml
 *.swp
 .vimrc

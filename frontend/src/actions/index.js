@@ -1,11 +1,14 @@
 import axios from 'axios';
 
+
 export const FETCH_CITY = 'FETCH_CITY';
 export const FETCH_CITIES = 'FETCH_CITIES';
 export const UPDATE_CITY = 'UPDATE_CITY';
 
+const PORT_API = process.env.PORT_API;
+const HOST = process.env.HOST;
 
-const ROOT_URL = 'http://127.0.0.1:8081';
+const ROOT_URL = `http://${HOST}:${PORT_API}`;
 const CONFIG = {
   auth: {
     username: 'test',

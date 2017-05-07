@@ -4,7 +4,6 @@ import express from 'express';
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
-
 let webpack = require('webpack');
 let webpackMiddleware = require('webpack-dev-middleware');
 let webpackHotMiddleware = require('webpack-hot-middleware');

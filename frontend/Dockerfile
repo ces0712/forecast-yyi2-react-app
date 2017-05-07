@@ -9,11 +9,13 @@ RUN npm config set registry http://registry.npmjs.org/ && npm install
 WORKDIR /usr/src/app
 COPY . /usr/src/app/
 RUN cp -a /tmp/node_modules /usr/src/app/
-
 RUN webpack
 
 ENV NODE_ENV=production
 ENV PORT=4000
+ENV PORT_API=8081
+ENV HOST=127.0.0.1
+
 
 CMD [ "/usr/local/bin/node", "./index.js" ]
 
