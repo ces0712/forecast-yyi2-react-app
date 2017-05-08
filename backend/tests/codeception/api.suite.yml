@@ -1,0 +1,8 @@
+class_name: ApiTester
+modules:
+  enabled: [ ApiHelper, Yii2, REST ]
+  config:
+    Yii2:
+      configFile: 'codeception/config/functional.php'
+    REST:
+      url: 'http://127.0.0.1:8081/v1'

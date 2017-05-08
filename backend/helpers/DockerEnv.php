@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\ArrayHelper;
-
 /**
  * DockerEnv
  *
@@ -11,23 +10,19 @@ class DockerEnv
 {
     const APP_DIR = '/var/www/html/';
     const VENDOR_DIR = '/var/www/vendor/';
-
-    const TEST_DB_DSN = 'pgsql:host=testdb;dbname=test;';
+    const TEST_DB_DSN = 'mysql:host=testdb;dbname=test';
     const TEST_DB_USER = 'test';
     const TEST_DB_PASSWORD = 'test';
-
     /**
      * Initialize main environment vars and load Yii 2
      */
     public static function init()
     {
         require('/var/www/vendor/autoload.php');
-
         // Load .env file if enabled and if it exists
         if (getenv('ENABLE_ENV_FILE') && file_exists(self::APP_DIR.'.env')) {
             Dotenv::load(self::APP_DIR);
         }
-
         // Define main environment variables
         if (isset($_ENV['YII_DEBUG'])) {
             define('YII_DEBUG', (bool)$_ENV['YII_DEBUG']);
@@ -39,10 +34,8 @@ class DockerEnv
             define('YII_ENV', $_ENV['YII_ENV']);
         }
         define('YII_ENV_TEST', defined('YII_ENV') && YII_ENV==='test');
-
         require(self::VENDOR_DIR.'yiisoft/yii2/Yii.php');
     }
-
     /**
      * Load the web configuration
      *
@@ -60,10 +53,8 @@ class DockerEnv
             }
             array_unshift($_files, self::APP_DIR.'config/web.php');
         }
-
         return self::loadConfigs($_files, $_config);
     }
-
     /**
      * Load the console configuration
      *
@@ -79,7 +70,6 @@ class DockerEnv
         array_unshift($_files, self::APP_DIR.'config/console.php');
         return self::loadConfigs($_files, $_config);
     }
-
     /**
      * Utility method to return either an env var or a default value if the var is not set.
      *
@@ -108,7 +98,6 @@ class DockerEnv
         $_configs[] = $_config;
         return call_user_func_array('yii\helpers\ArrayHelper::merge', $_configs);
     }
-
     /**
      * The dsn to use for the DB connection. This is either
      *
@@ -119,11 +108,10 @@ class DockerEnv
      * @param string $dsn the dsn to return if no env var is set and not in testing mode. Default is 'mysql:host=db;dbname=web'.
      * @return string the DB  dsn for the current environment
      */
-    public static function dbDsn($dsn = 'psql:host=db;dbname=forecast')
+    public static function dbDsn($dsn = 'pgsql:host=database;dbname=forecast')
     {
         return self::get('DB_DSN', YII_ENV_TEST ? self::TEST_DB_DSN : $dsn);
     }
-
     /**
      * The username to use for the DB connection. This is either
      *
@@ -138,7 +126,6 @@ class DockerEnv
     {
         return self::get('DB_USER', YII_ENV_TEST ? self::TEST_DB_USER : $user);
     }
-
     /**
      * The password to use for the DB connection. This is either
      *
