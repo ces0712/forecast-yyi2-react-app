@@ -1,6 +1,9 @@
 import _$ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// react-addons-test-utils is deprecated you can find it as dependency of react-dom for this version
+// tried
+// import ReactDOM, { TestUtils } from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import jsdom from 'jsdom';
 import chai, { expect } from 'chai';

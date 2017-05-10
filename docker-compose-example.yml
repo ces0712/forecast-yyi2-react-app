@@ -5,8 +5,10 @@ services:
         build: ./frontend
         volumes:
             - ./frontend:/usr/src/app:rw
-        environment:
+         environment:
             - NODE_ENV=dev
+            - PORT_API=8081
+            - HOST=127.0.0.1
         links:
             - backend
         ports:

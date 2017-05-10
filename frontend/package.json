@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
-    "start": "NODE_ENV=production node index.js"
+    "start": "NODE_ENV=production node index.js",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch"
   },
-  "author": "Marco Lehmann <m99coder@gmail.com> (http://m99.io/)",
+  "author": "Base Marco Lehmann <m99coder@gmail.com> (http://m99.io/)",
   "license": "MIT",
   "private": true,
   "devDependencies": {

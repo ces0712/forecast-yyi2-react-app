@@ -20,6 +20,7 @@ frontend/build/server.js.map
 frontend/build/public/assets
 frontend/webpack-assets.json
 frontend/webpack-stats.json
+frontend/.tern-project
 
 
 docker-compose.yml
