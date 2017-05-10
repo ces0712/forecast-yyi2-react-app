@@ -26,8 +26,8 @@ The project involves:
 
 ### Directory Structure
 
-  backend/ contains Yii2 framework Restful API application
-  frontend/ contains Reactjs frontend application
+  * backend/ contains Yii2 framework Restful API application
+  * frontend/ contains Reactjs frontend application
 
 ### Prerequisites
 * Docker 17.05-ce+
