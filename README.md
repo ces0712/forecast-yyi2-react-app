@@ -1,7 +1,7 @@
 # Forecast Weather app (Yii2 backend + React frontend + Docker)
 
 # Expected behavior of the app
-When you enter to the app shows you the map of berlin and some temperature graghics related to the next five days of weather, when you click to the botton shows always a different city. 
+When you enter to the app shows you the map of berlin and some temperature graghics related to the next five days of weather, when you click to the button shows always a different city. 
 
 Note: this app was made thinking in the best ways to scale according to the posible changes that could happen in real life, thinking always in the posible scenarios and difficulties that developers have when they are building from development environment and prepare for a deployment in production.
 
