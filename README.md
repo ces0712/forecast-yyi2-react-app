@@ -105,5 +105,14 @@ $ docker-compose run --rm test codecept run api --steps
 ![Alt text](/screenshots/1.png?raw=true "Screenshot test backend")
 
 Frontend side:
+I used mocha-chai-enzyme-jsdom-sinon libraries to test the frontend side
+you dont need internet connection to test the app
+ 
+Just run this command:
 
-Building some tests to the Frontend side
+```
+$ docker-compose run --rm frontend npm run test
+
+```
+![Alt text](/screenshots/2.png?raw=true "Screenshot test frontend")
+
