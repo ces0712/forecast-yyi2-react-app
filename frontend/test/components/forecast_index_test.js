@@ -1,10 +1,10 @@
 import { expect, renderComponent, renderJsx } from '../test_helper';
 import { Route, Redirect } from 'react-router-dom';
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reducer as form } from 'redux-form';
 import {mount, render, shallow} from 'enzyme';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import reducers from '../../src/reducers';
 
 import configureStore from 'redux-mock-store';
@@ -41,57 +41,42 @@ describe('ForecastIndex', () => {
 
   });
 
+  describe('ForecastIndex passing cities and city as props static way', () => {
+    let propsState;
+    beforeEach(() => {
+      propsState = {
+        city: mockCity,
+        cities: mockCities,
+        params: {id: 1},
+        form: 'forecastForm'
+      };
+      const store = createStore(reducers);
+      const Decorated = reduxForm({...propsState })(ForecastIndex);
 
+      wrapper = render(
+        <Provider store={store}>
+          <Decorated />
+        </Provider>
+      );
 
-  it('renders something', () => {
-    // expect(wrapper.find(Field).filter({name:'map'})).to.exist;
-  /*  const data = {
-       params: {id: 1}
-    };
-     handleSubmit = () =>{};
-   
-    let propsState = {
-      city: mockCity,
-      cities: mockCities,
-      submitting: false,
-      params: {id: 1},
-      handleSubmit: handleSubmit
-    }
-   
-    let sandbox;
-*/
+    });
+
+    it('shows a form', () => {
+      expect(wrapper.find('form')).to.exist;
+    });  
     
-    
-    // const Decorated = reduxForm({ form: 'forecastForm' })(ForecastIndex);
-    // const mockStore = configureStore();
-    // const dispatch = sinon.spy();
+    it('shows a submit buttom', () => {
+      // expect(wrapper.find('button')).to.have.className('btn');
+      expect(wrapper.find('button')).to.have.attr('type', 'submit');
+    });
 
-    // const store = createStore(reducers, propsState);
-    
+    it('shows a map div', () => {
+      expect(wrapper.find('div')).to.have.id('map');     
+    });
 
-  /*  const options = { context: {store},  childContextTypes: { store: React.PropTypes.object.isRequired }  };
-    wrapper = mount(
-        <Decorated   />, options
-    );
-    console.log(wrapper.html());*/
-    // const jsdom = require('jsdom-global')();
-    
-    // wrapper = shallow(renderJsx(Decorated, data, propsState));
-    // wrapper.setProps({ params: ' });
-    // wrapper = mount(renderJsx(ForecastIndex,props, propsState));
-    // wrapper.setProps({ ...context });
-    // expect(wrapper.find('button')).to.have.length(1);
-   /* wrapper.setProps({ 
-      city: mockCity, 
-      cities:mockCities, 
-      submitting: false, 
-      handleSubmit: handleSubmit 
-    });*/
-    // console.log(wrapper.html());
-
-    // expect(wrapper).to.have.html().match(/Loading.../);
-
-
+    it('renders a chart', () => {
+      expect(wrapper.find('svg')).to.exist;     
+    });
   });
 
   describe('ForecastChart', () => {
