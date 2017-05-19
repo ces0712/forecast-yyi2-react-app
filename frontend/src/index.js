@@ -6,6 +6,7 @@ import promise from 'redux-promise';
 import reducers from './reducers';
 import { AppContainer } from 'react-hot-loader';
 import Root from './root';
+require('../style/style.css');
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 

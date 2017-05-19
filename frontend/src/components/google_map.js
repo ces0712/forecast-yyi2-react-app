@@ -23,7 +23,7 @@ class GoogleMap extends Component {
 
   }
   // this lifecicle is call when receive new props
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps) {
     if (nextProps) {
       this.mapHelper(nextProps);
     }

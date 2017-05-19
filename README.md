@@ -92,11 +92,11 @@ Backend side:
 ```
   $ cd backend/tests
 ```
-Then prepare the test environment: Yii2 framework uses [codeception](codeception.com) a test framework base in PhpUnit, for testing you will need to setup another database different from your developing and production environment all the settings are already in the docker-compose.yml of this folder follow this [guide](https://github.com/codemix/yii2-dockerized/wiki/4.-How-to-test):
+Then prepare the test environment: Yii2 framework uses [codeception](codeception.com) a test framework base in PhpUnit, for testing you will need to set up another database different from your developing and production environment all the settings are already in the docker-compose.yml of this folder follow this [guide](https://github.com/codemix/yii2-dockerized/wiki/4.-How-to-test):
 
 The custom tests are in /backend/tests/codeception/api
 
-Once you have setup the environment run the tests with this command:
+Once you have set up the environment run the tests with this command:
 
 ```
 $ docker-compose run --rm test codecept run api --steps

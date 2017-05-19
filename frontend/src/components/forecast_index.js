@@ -1,4 +1,3 @@
-require('../../style/style.css');
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import { fetchCity, fetchCities, updateCity } from '../actions';
 import ForecastChart from './forecast_chart';
 import GoogleMap from './google_map';
 
-class ForecastIndex extends Component {
+export class ForecastIndex extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchCity(id);
